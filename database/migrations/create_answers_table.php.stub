@@ -15,10 +15,15 @@ class CreateAnswersTable extends Migration
     {
         Schema::create(config('survey.database.tables.answers'), function (Blueprint $table) {
             $table->increments('id');
+            $table->bigInteger('clientes_id')->unsigned();
             $table->unsignedInteger('question_id');
             $table->unsignedInteger('entry_id')->nullable();
             $table->string('value');
             $table->timestamps();
+
+            $table->foreign('clientes_id')
+                            ->references('id')->on('clientes')
+                            ->onDelete('cascade');
         });
     }
 

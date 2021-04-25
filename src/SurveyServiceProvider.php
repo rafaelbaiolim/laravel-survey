@@ -17,16 +17,16 @@ class SurveyServiceProvider extends ServiceProvider
     public function boot(ViewFactory $viewFactory)
     {
         $this->publishes([
-            __DIR__.'/../config/survey.php' => config_path('survey.php'),
+            __DIR__ . '/../config/survey.php' => config_path('survey.php'),
         ], 'config');
 
         $this->publishes([
-            __DIR__.'/../resources/views/' => base_path('resources/views/vendor/survey'),
+            __DIR__ . '/../resources/views/' => base_path('resources/views/vendor/survey'),
         ], 'views');
 
-        $this->mergeConfigFrom(__DIR__.'/../config/survey.php', 'survey');
+        $this->mergeConfigFrom(__DIR__ . '/../config/survey.php', 'survey');
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'survey');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'survey');
 
         $viewFactory->composer('survey::standard', SurveyComposer::class);
 
@@ -54,8 +54,8 @@ class SurveyServiceProvider extends ServiceProvider
             }
 
             $this->publishes([
-                __DIR__."/../database/migrations/$migration.php.stub" => database_path('migrations/'.date('Y_m_d_His',
-                        time())."_$migration.php"),
+                __DIR__ . "/../database/migrations/$migration.php.stub" => database_path('migrations/' . date('Y_m_d_His',
+                        time()) . "_$migration.php"),
             ], 'migrations');
         }
     }

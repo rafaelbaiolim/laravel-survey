@@ -2,10 +2,12 @@
 
 namespace MattDaneshvar\Survey\Models;
 
+use App\Traits\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
+    use BelongsToTenant;
     /**
      * Answer constructor.
      *

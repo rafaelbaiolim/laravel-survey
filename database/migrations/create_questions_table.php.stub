@@ -15,6 +15,7 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create(config('survey.database.tables.questions'), function (Blueprint $table) {
             $table->increments('id');
+            $table->bigInteger('clientes_id')->unsigned();
             $table->unsignedInteger('survey_id')->nullable();
             $table->unsignedInteger('section_id')->nullable();
             $table->string('content');
@@ -22,6 +23,10 @@ class CreateQuestionsTable extends Migration
             $table->json('options')->nullable();
             $table->json('rules')->nullable();
             $table->timestamps();
+
+            $table->foreign('clientes_id')
+                            ->references('id')->on('clientes')
+                            ->onDelete('cascade');
         });
     }
 

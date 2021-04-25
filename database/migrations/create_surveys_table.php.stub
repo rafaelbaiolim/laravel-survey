@@ -15,9 +15,14 @@ class CreateSurveysTable extends Migration
     {
         Schema::create(config('survey.database.tables.surveys'), function (Blueprint $table) {
             $table->increments('id');
+            $table->bigInteger('clientes_id')->unsigned();
             $table->string('name');
             $table->json('settings')->nullable();
             $table->timestamps();
+
+            $table->foreign('clientes_id')
+                            ->references('id')->on('clientes')
+                            ->onDelete('cascade');
         });
     }
 
